@@ -107,11 +107,11 @@ select celebrities.name,countries.name from celebrities left join countries on c
 
 -- 問28
 -- 全ての有名人の名前,国名、第一言語を出力してください。
-select celebrities.name,countries.name,country_languages.language from celebrities left join countries on celebrities.country_code = countries.code join country_languages on countries.code = country_languages.country_code where country_languages.percentage > 50 order by celebrities.id asc;
+select celebrities.name,countries.name,country_languages.language from celebrities left join countries on celebrities.country_code = countries.code join country_languages on celebrities.country_code = country_languages.country_code where country_languages.is_official = 'T' order by celebrities.id asc;
 
--- 問29
+-- 問29 
 -- 全ての有名人の名前と国名をに出力してください。 ただしテーブル結合せずサブクエリを使用してください。
-select celebrities.name,countries.name from celebrities,countries where countries.name in (select countries.name where celebrities.country_code = countries.code) union select celebrities.name,celebrities.country_code from celebrities where celebrities.country_code = '';
+select celebrities.name,countries.name from celebrities,countries where countries.name in (select countries.name where celebrities.country_code = countries.code);
 
 -- 問30
 -- 最年長が50歳以上かつ最年少が30歳以下の国を表示させてください。
